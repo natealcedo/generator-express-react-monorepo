@@ -1,0 +1,40 @@
+{
+  "name": "generator-express-react-monorepo",
+  "version": "0.0.0",
+  "description": "Generator for creating express react applications with babel",
+  "main": "index.js",
+  "engine": {
+    "node": ">8.9"
+  },
+  "scripts": {
+    "test": "npm test"
+  },
+  "files": [
+    "generators"
+  ],
+  "keywords": [
+    "react",
+    "express",
+    "yo",
+    "yeoman-generator"
+  ],
+  "author": "Nathaniel D. Alcedo Jr",
+  "license": "ISC",
+  "dependencies": {
+    "bluebird": "^3.5.1",
+    "chalk": "^2.3.1",
+    "glob": "^7.1.2",
+    "yeoman-generator": "^2.0.3"
+  },
+  "devDependencies": {
+    "ajv": "^6.1.1",
+    "eslint": "^4.18.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-import": "^2.9.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-prettier": "^2.6.0",
+    "eslint-plugin-react": "^7.7.0",
+    "prettier": "^1.10.2"
+  }
+}

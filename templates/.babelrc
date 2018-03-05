@@ -1,0 +1,20 @@
+{
+  "env": {
+    "development": {
+      "presets": [["env", {
+        "targets": {
+          "node": "8.9.3"
+        }
+    }]],
+      "plugins": ["rewire", "transform-object-rest-spread"]
+    },
+    "production": {
+      "presets": [["env", {
+        "targets": {
+          "node": "8.9.3"
+        }
+    }]],
+      "plugins": ["transform-object-rest-spread"]
+    }
+  }
+}
