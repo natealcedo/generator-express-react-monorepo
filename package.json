@@ -1,6 +1,6 @@
 {
   "name": "generator-express-react-monorepo",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Generator for creating express react applications with babel",
   "main": "index.js",
   "engine": {
@@ -9,15 +9,8 @@
   "scripts": {
     "test": "npm test"
   },
-  "files": [
-    "generators"
-  ],
-  "keywords": [
-    "react",
-    "express",
-    "yo",
-    "yeoman-generator"
-  ],
+  "files": ["generators"],
+  "keywords": ["react", "express", "yo", "yeoman-generator"],
   "author": "Nathaniel D. Alcedo Jr",
   "license": "ISC",
   "dependencies": {

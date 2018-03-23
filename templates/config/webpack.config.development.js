@@ -4,6 +4,7 @@ const { appAliases, appPaths, publicPath } = require("./utils");
 
 module.exports = {
   devtool: "inline-source-map",
+  mode: "development",
   entry: [
     "babel-polyfill",
     "webpack-hot-middleware/client",

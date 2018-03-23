@@ -1,9 +1,7 @@
-import cookie from "./cookie";
 import logger from "./logger";
 
-export { cookie, logger };
+export { logger };
 
 export default {
-  cookie,
   logger,
 };

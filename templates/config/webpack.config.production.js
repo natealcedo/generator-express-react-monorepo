@@ -1,16 +1,13 @@
-const chalk = require("chalk");
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const webpack = require("webpack");
+const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
+const chalk = require("chalk");
 const path = require("path");
+const webpack = require("webpack");
 const { appAliases, appPaths, publicPath } = require("./utils");
 
 // Force production environment here
 process.env.NODE_ENV = "production";
-const extractSass = new ExtractTextPlugin({
-  filename: "[name].[contenthash].css",
-  disable: process.env.NODE_ENV === "development",
-});
 
 console.log(
   chalk.green(
@@ -19,6 +16,7 @@ console.log(
 );
 
 module.exports = {
+  mode: "production",
   devtool: "source-map",
   entry: ["babel-polyfill", path.resolve(__dirname, "../client/index.js")],
   output: {
@@ -27,11 +25,15 @@ module.exports = {
     filename: "bundle.[hash].js",
   },
   plugins: [
-    extractSass,
+    new MiniCssExtractPlugin({
+      filename: "[name].[hash].css",
+    }),
     new webpack.DefinePlugin({
       "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV),
     }),
-    new webpack.optimize.UglifyJsPlugin(),
+    new UglifyJsPlugin({
+      sourceMap: true,
+    }),
     new HtmlWebpackPlugin({
       title: "AXA Pay",
       template: path.resolve(__dirname, "../config/index.template.html"),
@@ -65,25 +67,25 @@ module.exports = {
           },
           {
             test: /\.(scss|css)$/,
-            use: extractSass.extract({
-              use: [
-                {
-                  loader: "css-loader",
-                },
-                {
-                  loader: "postcss-loader",
-                  options: {
-                    config: {
-                      path: path.resolve(__dirname, "../config/postcss.config"),
-                    },
+            use: [
+              {
+                loader: MiniCssExtractPlugin.loader,
+              },
+              {
+                loader: "css-loader",
+              },
+              {
+                loader: "postcss-loader",
+                options: {
+                  config: {
+                    path: path.resolve(__dirname, "../config/postcss.config"),
                   },
                 },
-                {
-                  loader: "sass-loader",
-                },
-              ],
-              fallback: "style-loader",
-            }),
+              },
+              {
+                loader: "sass-loader",
+              },
+            ],
           },
           {
             test: /\.(png|jpg|svg)$/,
